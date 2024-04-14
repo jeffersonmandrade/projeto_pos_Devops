@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: f1-db
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: f1-db
+  template:
+    metadata:
+      labels:
+        app: f1-db
+    spec:
+      containers:
+      - name: mongodb
+        image: jefandrade/data-f1
+        ports:
+        - containerPort: 27017

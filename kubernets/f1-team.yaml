@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: f1-team
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: f1-team
+  template:
+    metadata:
+      labels:
+        app: f1-team
+    spec:
+      containers:
+      - name: teams-f1
+        image: jefandrade/team-f1:1.3
+        ports:
+        - containerPort: 4000

@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  mongodb:
+    image: jefandrade/data-f1
+    container_name: f1-db
+    networks: 
+      - f1-bridge
+  teams-f1:
+    image: jefandrade/team-f1:1.2
+    container_name: f1-team
+    networks:
+      - f1-bridge
+    ports:
+      - 4000:4000
+    depends_on:
+      - mongodb
+  prometheus:
+    image: jefandrade/prometheus
+    container_name: prometheus
+    networks: 
+      - f1-bridge
+    ports:
+      - 9090:9090
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    networks: 
+      - f1-bridge
+    ports:
+      - 3000:3000
+
+
+networks:
+  f1-bridge:
+    driver: bridge

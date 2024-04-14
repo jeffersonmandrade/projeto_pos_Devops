@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: f1-db
+spec:
+  selector:
+    app: f1-db
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017

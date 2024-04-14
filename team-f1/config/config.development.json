@@ -1,0 +1,6 @@
+{   
+    "databaseConfig":{
+        "host": "f1-db",
+        "database": "test"
+    }
+}

@@ -15,15 +15,6 @@ register.setDefaultLabels({
   app: "node-aplication"
 })
 
-const cpuUsageGauge = new promClient.Gauge({
-  name: 'node_cpu_usage_percent',
-  help: 'Current CPU usage percentage',
-});
-
-const memoryUsageGauge = new promClient.Gauge({
-  name: 'node_memory_usage_bytes',
-  help: 'Current memory usage in bytes',
-});
 
 const httpRequestCounter = new promClient.Counter({
   name: 'http_requests_total',
@@ -56,8 +47,6 @@ router.get('/error', (req, res) => {
 });
 
 router.get('/metrics', (async (request, response) => {
-  cpuUsageGauge.set(stats.cpu);
-  memoryUsageGauge.set(stats.memory);
   response.set('Content-Type', promClient.register.contentType);
     response.send(await promClient.register.metrics());
   }));

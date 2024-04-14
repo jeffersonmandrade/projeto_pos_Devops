@@ -20,6 +20,18 @@ spec:
           volumeMounts:
             - name: prometheus-storage
               mountPath: /prometheus/data
+          readinessProbe:
+            httpGet:
+              path: /-/ready
+              port: 9090
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /-/healthy
+              port: 9090
+            initialDelaySeconds: 60
+            periodSeconds: 30
       volumes:
         - name: prometheus-storage
           emptyDir: {}
